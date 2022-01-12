@@ -5,7 +5,7 @@
 from __future__ import unicode_literals
 import frappe, json
 from frappe import throw, _
-from frappe.utils import getdate, validate_email_add, today
+from frappe.utils import getdate, validate_email_address, today
 from frappe.model.document import Document
 from collections import namedtuple
 
@@ -75,7 +75,7 @@ class PRULIAMember(Document):
 
 	def validate_email(self):
 		if self.email:
-			validate_email_add(self.email, True)
+			validate_email_address(self.email, True)
 
 	def validate_prudential_id(self):
 		user = frappe.db.sql_list("""select name from `tabUser` where
